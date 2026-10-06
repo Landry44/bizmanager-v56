@@ -410,4 +410,4 @@ model Return {
   customer     Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
 
   @@index([companyId, createdAt])
-} correction du schéma Prisma
+} 
