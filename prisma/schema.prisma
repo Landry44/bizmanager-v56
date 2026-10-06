@@ -36,7 +36,9 @@ enum AuditAction {
 enum SubscriptionPlan {
   FREE
   BASIC
+  BUSINESS
   ADVANCED
+  ENTERPRISE
 }
 
 enum SubscriptionStatus {
@@ -410,4 +412,4 @@ model Return {
   customer     Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
 
   @@index([companyId, createdAt])
-} 
+} Ajout de tous les plans
