@@ -412,4 +412,4 @@ model Return {
   customer     Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
 
   @@index([companyId, createdAt])
-} Ajout de tous les plans
+}
