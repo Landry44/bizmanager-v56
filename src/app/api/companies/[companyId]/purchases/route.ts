@@ -116,4 +116,4 @@ export async function POST(
   } catch (e: any) {
     return NextResponse.json({ error: e?.message || "Erreur" }, { status: 400 });
   }
-} Correction finale purchases
+}
