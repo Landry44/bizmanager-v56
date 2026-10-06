@@ -107,6 +107,7 @@ model Company {
   stockMovements      StockMovement[]
   subscription        Subscription?
   payments            Payment[]
+  paymentOrders       PaymentOrder[]
 }
 
 model Subscription {
@@ -135,6 +136,22 @@ model Payment {
   company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
   @@index([companyId, createdAt])
+}
+
+model PaymentOrder {
+  id        String   @id @default(cuid())
+  companyId String
+  plan      String
+  amount    Int
+  currency  String   @default("XAF")
+  status    String   @default("PENDING")
+  provider  String?
+  reference String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId, status])
 }
 
 model Membership {
@@ -412,18 +429,4 @@ model Return {
   customer     Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
 
   @@index([companyId, createdAt])
-} model PaymentOrder {
-  id        String   @id @default(cuid())
-  companyId String
-  plan      String
-  amount    Int
-  currency  String   @default("XAF")
-  status    String   @default("PENDING")
-  provider  String?
-  reference String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-  @@index([companyId, status])
-} ajout du model PaymentOrder
+}
