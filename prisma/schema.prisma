@@ -145,6 +145,7 @@ model PaymentOrder {
   amount    Int
   currency  String   @default("XAF")
   status    String   @default("PENDING")
+  paidAt    DateTime
   provider  String?
   reference String?
   createdAt DateTime @default(now())
