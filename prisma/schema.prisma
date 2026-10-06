@@ -139,18 +139,19 @@ model Payment {
 }
 
 model PaymentOrder {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   companyId String
   plan      String
   amount    Int
-  currency  String   @default("XAF")
-  status    String   @default("PENDING")
-  paidAt    DateTime
+  currency  String    @default("XAF")
+  status    String    @default("PENDING")
+  paidAt    DateTime?
   provider  String?
   reference String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  metadata  Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
   @@index([companyId, status])
 }
